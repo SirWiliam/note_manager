@@ -3,8 +3,8 @@ username = 'Александр Клюкин'
 title = 'Grade 1'
 content = 'Закончить проект Grade1'
 status = 'Выполняется'
-created_date = '26 - 12 - 2024'
-issue_date = '9 - 02 - 2025'
+created_date = '26-12-2024'
+issue_date = '09-02-2025'
 
 print('Имя пользователя:', username)
 print('Заголовок заметки:', title)
