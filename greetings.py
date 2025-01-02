@@ -1,4 +1,3 @@
-
 username = 'Александр Клюкин'
 title = 'Grade 1'
 content = 'Закончить проект Grade1'
