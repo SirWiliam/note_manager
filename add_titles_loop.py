@@ -8,17 +8,17 @@ while True:
     i += 1
 # Создаём условия для остановки создания новых заголовков
     if title == '':
-      break
+        break
 # Подтверждаем ввод
     titles.append(title)
     print('Вы ввели: ', title)
 # Сразу проверяем на совпадение заголовков
     if len(titles) == len(set(titles)):
-      continue
+        continue
     if len(titles) != len(set(titles)):
-      titles.pop(-1)
-      print('Вы ввели повторяющийся заголовок!\n'
-          'Он будет удалён автоматически: ', title)
+        titles.pop(-1)
+        print('Вы ввели повторяющийся заголовок!\n'
+              'Он будет удалён автоматически: ', title)
 # Выводим итог работы программы
 print("Ваши заголовки: ")
 print('\n'.join(titles))
