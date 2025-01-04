@@ -18,7 +18,7 @@ while True:
                           'Для отмены изменения нажмите - Enter: ')
         if update_status == 'Поменять':
             continue
-        if update_status == '':
+        elif update_status == '':
             break
     if status == '2':
         print('Ваш выбор: 2')
@@ -27,7 +27,7 @@ while True:
                             'Для отмены изменения нажмите - Enter: ')
         if update_status == 'Поменять':
           continue
-        if update_status == '':
+        elif update_status == '':
           break
     if status == '3':
         print('Ваш выбор: 3')
@@ -36,7 +36,7 @@ while True:
                             'Для отмены изменения нажмите - Enter: ')
         if update_status == 'Поменять':
             continue
-        if update_status == '':
+        elif update_status == '':
             break
     if status == '4':
         print('Ваш выбор: 4')
@@ -45,7 +45,7 @@ while True:
                             'Для отмены изменения нажмите - Enter: ')
         if update_status == 'Поменять':
             continue
-        if update_status == '':
+        elif update_status == '':
             break
     if status != '1' or '2' or '3' or '4':
         print('Не верный ввод!')
