@@ -47,7 +47,7 @@ while True:
             continue
         elif update_status == '':
             break
-    if status != '1' or '2' or '3' or '4':
+    else:
         print('Не верный ввод!')
         continue
 
