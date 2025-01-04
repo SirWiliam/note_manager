@@ -1,6 +1,5 @@
 # Программа запускается и показывает текущую дату
 from datetime import datetime
-
 current_date = datetime.now().date()
 print('Текущая дата: ', current_date.strftime('%d-%m-%Y'))
 # Запрашиваем у пользователя дату дедлайна
