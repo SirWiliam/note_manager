@@ -12,7 +12,7 @@ while True:
 # Подтверждаем ввод
     titles.append(title)
     print('Вы ввели: ', title)
-# Сразу проверяем на совпадение заголовков
+# Проверяем на совпадение заголовков
     if len(titles) == len(set(titles)):
         continue
     elif len(titles) != len(set(titles)):
