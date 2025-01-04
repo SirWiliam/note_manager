@@ -3,11 +3,11 @@ from datetime import datetime
 current_date = datetime.now().date()
 print('Текущая дата: ', current_date.strftime('%d-%m-%Y'))
 # Запрашиваем у пользователя дату дедлайна
-# Переводим полученное значение в формат datetime для сравнения
 while True:
     issue_date = input('Пожалуйста, введите дату истечения заметки\n'
       ' в формате "дд-мм-гггг"(через дефис и без пробелов): ')
     try:
+# Переводим полученное значение в формат datetime для сравнения
         issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
 # Подтверждение правильного ввода
         print('Вы ввели: ', issue_date.strftime('%d-%m-%Y'))
