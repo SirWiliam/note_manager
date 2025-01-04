@@ -15,7 +15,7 @@ while True:
 # Сразу проверяем на совпадение заголовков
     if len(titles) == len(set(titles)):
         continue
-    if len(titles) != len(set(titles)):
+    elif len(titles) != len(set(titles)):
         titles.pop(-1)
         print('Вы ввели повторяющийся заголовок!\n'
               'Он будет удалён автоматически: ', title)
