@@ -19,11 +19,11 @@ while True:
     if issue_date == current_date:
         print('Внимание! Дедлайн истекает сегодня.')
         break
-    if issue_date < current_date:
+    elif issue_date < current_date:
         difference = current_date - issue_date
         print('Внимание! Дедлайн истёк: ', difference.days, 'дней назад!')
         break
-    if issue_date > current_date:
+    elif issue_date > current_date:
         difference_1 = issue_date - current_date
         print('Внимание! До дедлайна: ', difference_1.days, 'дней!')
         break
