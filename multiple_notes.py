@@ -1,47 +1,99 @@
 # Программа запускается с приветствия
 from time import sleep
-
+from datetime import datetime
 note_list = []
 print('Добро пожаловать в менеджер заметок "Мысль"!')
+current_date = datetime.today().date()
+print('Сегодня: ', current_date.strftime('%d-%m-%Y'))
 while True:
-    user_answer = input('Хотите добавить новую заметку? (да/нет): ')
+    user_answer = input('Хотите добавить новую заметку? (да/нет): ').lower()
     if user_answer == 'да':
         break
     if user_answer == 'нет':
-        quit()
+        quit('Конец работы программы!')
     else:
-        print('Неверный ввод!')
+        print('Неверный ввод! Попробуйте ещё раз.')
         continue
 
 i = 0
 while True:
-    print(f'Пожалуйста введите данные заметки №{i + 1}')
-    i += 1
-    titles = {}
-    title = input('Введите заголовок вашей заметки: ')
-    titles['Заголовок'] = title
-    name = {}
+    print(f'Пожалуйста введите данные для заметки №{i + 1}')
+    note = {}
     username = input('Введите ваше имя: ')
-    name['Имя'] = username
-    contents = {}
+    note['Имя:'] = username
+    if username == '':
+        print('Неверный ввод!')
+        continue
+    title = input('Введите заголовок вашей заметки: ')
+    note['Заголовок:'] = title
+    if title == '':
+        print('Неверный ввод!')
+        continue
+    elif title == note.values():
+        print('Вы ввели похожий заголовок!')
+        title_change = input('Хотите его заменить?(да/нет): ').lower()
+        if title_change == 'да':
+            continue
+        elif title_change == 'нет':
+            break
+        else:
+            print('Неверный ввод! Попробуйте ещё раз.')
+            continue
     content = input('Придумайте описание вашей заметки: ')
-    contents['Описание'] = content
-    statuses = {}
+    note['Описание:'] = content
+    if content == '':
+        print('Неверный ввод!')
+        continue
     status = input('Введите статус заметки (Например: "Выполняется" или Выполнена"): ')
-    statuses['Статус заметки'] = status
-    created_dates = {}
-    created_date = input('Введите дату создания заметки в формате "дд-мм-гггг": ')
-    created_dates['Дата создания'] = created_date
-    issue_dates = {}
-    issue_date = input('Введите дату дедлана заметки в формате "дд-мм-гггг": ')
-    issue_dates['Дата дедлайна'] = issue_date
+    note['Статус заметки:'] = status
+    if status == '':
+        print('Неверный ввод!')
+        continue
+    created_date = input('Введите дату создания заметки\n'
+      'в формате "дд-мм-гггг"(через дефис и без пробелов): ')
+    try:
+        created_date = datetime.strptime(created_date, '%d-%m-%Y').date()
+    except ValueError:
+        print('Неверный ввод! Попробуйте ещё.')
+        continue
+    note['Дата создания:'] = created_date
+    issue_date = input('Введите дату истечения заметки\n'
+      ' в формате "дд-мм-гггг"(через дефис и без пробелов): ')
+    try:
+        issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
+    except ValueError:
+        print('Неверный ввод! Попробуйте ещё.')
+        continue
+    if issue_date == current_date:
+        print('Внимание! Дедлайн истекает сегодня.')
+        break
+    elif issue_date < current_date:
+        difference = current_date - issue_date
+        print('Внимание! Дедлайн истёк: ', difference.days, 'дней назад!')
+        break
+    elif issue_date > current_date:
+        difference_1 = issue_date - current_date
+        print('Внимание! До дедлайна: ', difference_1.days, 'дней!')
+        break
+    note['Дата дедлайна:'] = issue_date
     print('Спасибо за ваши данные!')
-
-    question = input('Хотите создать ещё одну заметку? (да/нет):')
+    note_list.append(note)
+    i += 1
+    question = input('Хотите создать ещё одну заметку? (да/нет):').lower()
     if question == 'да':
         continue
-    else:
+    elif question == 'нет':
         print('Группируем ваши данные...')
         sleep(1)
-        print('\n'.join())
         break
+    else:
+        print('Неверный ввод! Попробуйте ещё раз.')
+        continue
+print('Вы создали следующие заметки: ')
+a = 0
+for item in note_list:
+    print(f'Заметка №{a + 1}:')
+    a += 1
+    print(*item.items(), sep='\n')
+
+print('Конец работы программы!')
