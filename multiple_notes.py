@@ -92,7 +92,7 @@ while True:
             continue
     while True:
         issue_date = input('Введите дату истечения заметки\n'
-                     ' в формате "дд-мм-гггг"(через дефис и без пробелов): ')
+                     'в формате "дд-мм-гггг"(через дефис и без пробелов): ')
         try:
             issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
             note['Дата дедлайна:'] = issue_date.strftime('%d-%m-%Y')
