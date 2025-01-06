@@ -22,7 +22,7 @@ while True:
         username = input('Введите ваше имя: ')
         note['Имя:'] = username
         if username == '':
-            print('Неверный ввод!')
+            print('Неверный ввод! Попробуйте ещё раз')
             continue
         else:
             break
@@ -30,7 +30,7 @@ while True:
         title = input('Введите заголовок вашей заметки: ')
         note['Заголовок:'] = title
         if title == '':
-            print('Неверный ввод!')
+            print('Неверный ввод! Попробуйте ещё раз.')
             continue
         elif title == note.values():        # Не работает проверка на повтор заголовка!
             print('Вы ввели похожий заголовок!')
@@ -48,7 +48,7 @@ while True:
         content = input('Придумайте описание вашей заметки: ')
         note['Описание:'] = content
         if content == '':
-            print('Неверный ввод!')
+            print('Неверный ввод! Попробуйте ещё раз.')
             continue
         else:
             break
@@ -71,7 +71,7 @@ while True:
             print('Ваш выбор: 3')
             print('Обновлённый статус заметки:', "Отложена")
         else:
-            print('Не верный ввод!')
+            print('Не верный ввод! Попробуйте ещё раз.')
             continue
         update_status = input('Для изменения статуса введите любой символ\n'
                                   'или для отмены изменения нажмите - Enter: ')
@@ -88,7 +88,7 @@ while True:
             note['Дата создания:'] = created_date.strftime('%d-%m-%Y')
             break
         except ValueError:
-            print('Неверный ввод! Попробуйте ещё.')
+            print('Неверный ввод! Попробуйте ещё раз.')
             continue
     while True:
         issue_date = input('Введите дату истечения заметки\n'
@@ -97,7 +97,7 @@ while True:
             issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
             note['Дата дедлайна:'] = issue_date.strftime('%d-%m-%Y')
         except ValueError:
-            print('Неверный ввод! Попробуйте ещё.')
+            print('Неверный ввод! Попробуйте ещё раз.')
             continue
         if issue_date == current_date:
             print('Внимание! Дедлайн истекает сегодня.')
