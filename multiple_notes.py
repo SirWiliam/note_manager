@@ -32,7 +32,7 @@ while True:
         if title == '':
             print('Неверный ввод!')
             continue
-        elif title == note.values():
+        elif title == note.values():        # Не работает проверка на повтор заголовка!
             print('Вы ввели похожий заголовок!')
             title_change = input('Хотите его заменить?(да/нет): ').lower()
             if title_change == 'да':
@@ -57,9 +57,8 @@ while True:
             '1': "Выполняется",
             '2': "Выполнена",
             '3': "Отложена",
-            '4': "Просрочена"
              }
-        print('Пожалуйста, выберите новый статус вашей заметки')
+        print('Выберите статус вашей заметки')
         print(*status_list.items(), sep='\n')
         status = input('Введите номер статуса который вам подходит: ')
         if status == '1':
@@ -71,14 +70,11 @@ while True:
         elif status == '3':
             print('Ваш выбор: 3')
             print('Обновлённый статус заметки:', "Отложена")
-        elif status == '4':
-            print('Ваш выбор: 4')
-            print('Обновлённый статус заметки:', "Просрочена")
         else:
             print('Не верный ввод!')
             continue
         update_status = input('Для изменения статуса введите любой символ\n'
-                                  'Для отмены изменения нажмите - Enter: ')
+                                  'или для отмены изменения нажмите - Enter: ')
         if update_status == type(str):
             continue
         elif update_status == '':
@@ -133,5 +129,3 @@ for item in note_list:
     print(f'Заметка №{a + 1}:')
     a += 1
     print(*item.items(), sep='\n')
-
-print('Конец работы программы!')
