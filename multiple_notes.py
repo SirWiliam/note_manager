@@ -99,15 +99,15 @@ while True:
         except ValueError:
             print('Неверный ввод! Попробуйте ещё раз.')
             continue
-        if issue_date == current_date:
+        if issue_date == created_date:
             print('Внимание! Дедлайн истекает сегодня.')
             break
-        elif issue_date < current_date:
-            difference = current_date - issue_date
+        elif issue_date < created_date:
+            difference = created_date - issue_date
             print('Внимание! Дедлайн истёк: ', difference.days, 'дней назад!')
             break
-        elif issue_date > current_date:
-            difference_1 = issue_date - current_date
+        elif issue_date > created_date:
+            difference_1 = issue_date - created_date
             print('Внимание! До дедлайна: ', difference_1.days, 'дней!')
             break
     print('Создание заметки завершено.')
