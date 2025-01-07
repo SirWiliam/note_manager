@@ -32,16 +32,6 @@ while True:
         if title == '':
             print('Неверный ввод! Попробуйте ещё раз.')
             continue
-        elif title == note.values():        # Не работает проверка на повтор заголовка!
-            print('Вы ввели похожий заголовок!')
-            title_change = input('Хотите его заменить?(да/нет): ').lower()
-            if title_change == 'да':
-                continue
-            elif title_change == 'нет':
-                break
-            else:
-                print('Неверный ввод! Попробуйте ещё раз.')
-                continue
         else:
             break
     while True:
