@@ -28,7 +28,7 @@ for j in reversed(range(len(note_list))):
     if note_list[j]['Заголовок:'] != choice_title:
         continue
 # Если заголовок не найден, программа об этом сообщает (не работает)
-    if note_list[j]['Заголовок:'] != choice_title:
+    elif note_list[j]['Заголовок:'] != choice_title:
         print('Заметок для удаления не найдено!')
         break
 # Когда заголовки совпали, предлагается подтвердить удаление
