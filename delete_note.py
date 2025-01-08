@@ -22,22 +22,28 @@ for item in note_list:
     i += 1
     print(*item.items(), sep='\n')
 # Пользователь вводит заголовок для удаления
-choice_title = input('Введите заголовок заметки которую хотите удалить: ')
+choice_title = input('Введите заголовок заметки которую хотите удалить (Enter - отмена): ')
 # Проверка на совпадение заголовков
 for j in reversed(range(len(note_list))):
     if note_list[j]['Заголовок:'] != choice_title:
         continue
+# Если заголовок не найден, программа об этом сообщает (не работает)
+    if note_list[j]['Заголовок:'] != choice_title:
+        print('Заметок для удаления не найдено!')
+        break
 # Когда заголовки совпали, предлагается подтвердить удаление
     elif note_list[j]['Заголовок:'] == choice_title:
-        answer = input('Заметка найдена! Подтвердите удаление(да/нет):').lower()
-        if answer == 'да':
-            del note_list[j]
-            print('Удаление успешно!')
-            break
-        elif answer == 'нет':
-            break
-    else:
-        print('Заметок для удаления не найдено!') # Не могу реализовать вывод реакции если заметка не найдена
+        while True:
+            answer = input('Заметка найдена! Подтвердите удаление(да/нет):').lower()
+            if answer == 'да':
+                del note_list[j]
+                print('Удаление успешно!')
+                break
+            elif answer == 'нет':
+                break
+            elif answer == '' or str:
+                print('Неверный ввод! Попробуйте ещё.')
+                continue
 # Выводим список заметок после изменения
 print('Ваш список заметок после изменения:')
 b = 0
