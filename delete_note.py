@@ -1,4 +1,4 @@
-from operator import index
+
 
 note_list = [{
               'Имя:': 'Алекс',
@@ -24,26 +24,29 @@ for item in note_list:
     i += 1
     print(*item.items(), sep='\n')
 # Пользователь вводит заголовок для удаления
-choice_title = input('Введите заголовок заметки которую хотите удалить (Enter - отмена): ')
+choice_title = input('Введите заголовок заметки которую хотите удалить:')
 # Проверка на совпадение заголовков
-for j in reversed(range(len(note_list))):
-    if note_list[j]['Заголовок:'] != choice_title:
-# Если заголовок не найден, программа об этом сообщает (не работает корректно)
-        print('Заметок для удаления не найдено!')
-        continue
+while True:
+    for j in reversed(range(len(note_list))):
+        if note_list[j]['Заголовок:'] != choice_title:
+            continue
 # Когда заголовки совпали, предлагается подтвердить удаление
-    elif note_list[j]['Заголовок:'] == choice_title:
-        while True:
-            answer = input('Заметка найдена! Подтвердите удаление(да/нет):').lower()
-            if answer == 'да':
-                del note_list[j]
-                print('Удаление успешно!')
-                break
-            elif answer == 'нет':
-                break
-            elif answer == '' or str:
-                print('Неверный ввод! Попробуйте ещё.')
-                continue
+        elif note_list[j]['Заголовок:'] == choice_title:
+            while True:
+                answer = input('Заметка найдена! Подтвердите удаление(да/нет):').lower()
+                if answer == 'да':
+                    del note_list[j]
+                    print('Удаление успешно!')
+                    break
+                elif answer == 'нет':
+                    break
+                elif answer == '' or str:
+                    print('Неверный ввод! Попробуйте ещё.')
+                    continue
+# Если заголовок не найден, программа об этом сообщает
+    else:
+        print('Заметок для удаления не найдено!')
+        break
 # Выводим список заметок после изменения
 print('Ваш список заметок после изменения:')
 b = 0
