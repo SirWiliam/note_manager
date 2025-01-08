@@ -1,9 +1,11 @@
 from time import sleep
 from datetime import datetime
+# Программа запускается и приветствует пользователя
 note_list = []
 print('Добро пожаловать в менеджер заметок "Мысль"!')
 current_date = datetime.today().date()
 print('Сегодня: ', current_date.strftime('%d-%m-%Y'))
+# Программа предлагает создать заметку
 while True:
     user_answer = input('Хотите добавить новую заметку? (да/нет): ').lower()
     if user_answer == 'да':
@@ -13,11 +15,12 @@ while True:
     else:
         print('Неверный ввод! Попробуйте ещё раз.')
         continue
-
+# Если ответ положительный, начинается создание заметки
 i = 0
 while True:
     print(f'Пожалуйста введите данные для заметки №{i + 1}')
     note = {}
+# Пользователь вводит своё имя
     while True:
         username = input('Введите ваше имя: ')
         note['Имя:'] = username
@@ -26,6 +29,7 @@ while True:
             continue
         else:
             break
+# Пользователь вводит заголовок заметки
     while True:
         title = input('Введите заголовок вашей заметки: ')
         note['Заголовок:'] = title
@@ -34,6 +38,7 @@ while True:
             continue
         else:
             break
+# Пользователь вводит описание заметки
     while True:
         content = input('Придумайте описание вашей заметки: ')
         note['Описание:'] = content
@@ -42,6 +47,7 @@ while True:
             continue
         else:
             break
+# Пользователь выбирает статус для своей заметки
     while True:
         status_list = {
             '1': "Выполняется",
@@ -70,6 +76,7 @@ while True:
         elif update_status == '':
             note['Статус заметки:'] = status_list.get(status)
             break
+# Пользователь вводит дату создания (не знаю зачем заставлять пользователя это делать)
     while True:
         created_date = input('Введите дату создания заметки\n'
                      'в формате "дд-мм-гггг"(через дефис и без пробелов): ')
@@ -80,6 +87,7 @@ while True:
         except ValueError:
             print('Неверный ввод! Попробуйте ещё раз.')
             continue
+# Пользователь вводит дату дедлайна заметки
     while True:
         issue_date = input('Введите дату истечения заметки\n'
                      'в формате "дд-мм-гггг"(через дефис и без пробелов): ')
@@ -100,9 +108,11 @@ while True:
             difference_1 = issue_date - created_date
             print('Внимание! До дедлайна: ', difference_1.days, 'дней!')
             break
+# После всех действий заметка сохраняется в виде словаря в списке
     print('Создание заметки завершено.')
     note_list.append(note)
     i += 1
+# Предлагается создать ещё одну заметку
     question = input('Хотите создать ещё одну заметку? (да/нет):').lower()
     if question == 'да':
         continue
@@ -113,6 +123,7 @@ while True:
     else:
         print('Неверный ввод! Попробуйте ещё раз.')
         continue
+# Выводится результат работы программы
 print('Вы создали следующие заметки: ')
 a = 0
 for item in note_list:
