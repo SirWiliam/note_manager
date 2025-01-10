@@ -22,12 +22,12 @@ def create_note():
             continue
 # Записываем все полученные данные в словарь
     note = {
-        "Имя:": username,
-        "Заголовок:": title,
-        "Описание:": content,
-        "Статус заметки:": status,
-        "Дата создания:": created_date,
-        "Дата дедлайна:": datetime.strftime(issue_date, '%d-%m-%Y')
+        "username": username,
+        "title": title,
+        "content": content,
+        "status": status,
+        "created_date": created_date,
+        "issue_date": datetime.strftime(issue_date, '%d-%m-%Y')
     }
 
     return note
