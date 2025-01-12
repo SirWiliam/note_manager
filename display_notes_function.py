@@ -1,8 +1,9 @@
 from datetime import datetime
 from colorama import init, deinit
-
-init()
+# Используем библиотеку colorama для визуального оформления
+init(autoreset=True)
 from colorama import Fore, Back, Style
+# Создаём функцию, которая будет выводить список созданных заметок
 def display_notes(notes):
     print(Fore.YELLOW + 'Список ваших заметок:')
     if len(notes) == 0:
@@ -13,11 +14,12 @@ def display_notes(notes):
         print(Fore.CYAN, Style.BRIGHT + f'Заметка №{a + 1}:')
         a += 1
         print(*item.items(), sep='\n')
+# Создаём список в который будем добавлять готовые заметки
 notes = []
-
+# Создание заметок начинаем с вопроса
 while True:
     question = input(Style.BRIGHT + 'Хотите создать заметку? (да\нет): ').lower()
-
+# Если вопрос положительный, начинается сбор информации для заметки
     if question == 'да':
        note = {}
        while True:
@@ -28,7 +30,6 @@ while True:
            else:
                break
        note['username'] = username
-
        while True:
            title = input(Style.BRIGHT + 'Введите название заметки: ')
            if title == '':
@@ -37,7 +38,6 @@ while True:
            else:
                break
        note['title'] = title
-
        while True:
            content = input(Style.BRIGHT + 'Введите описание заметки: ')
            if content == '':
@@ -46,8 +46,10 @@ while True:
            else:
                break
        note['content'] = content
+# Статус для новых заметок присваивается автоматически
        status = 'Новая'
        note['status'] = status
+# Время создания присваивается автоматически
        created_date = datetime.today().date()
        note['created_date'] = datetime.strftime(created_date, '%d-%m-%Y')
        while True:
@@ -62,7 +64,7 @@ while True:
            except ValueError:
                print(Fore.RED + 'Неверный ввод! Попробуйте ещё.')
                continue
-           # Сравниваем даты
+           # Сравниваем даты и предупреждаем о разнице
            if issue_date == created_date:
                print(Fore.RED + 'Внимание! Дедлайн истекает сегодня.')
                break
@@ -75,14 +77,16 @@ while True:
                print(Fore.RED + 'Внимание! До дедлайна: ', difference_1.days, 'дней!')
                break
        note['issue_date'] = datetime.strftime(issue_date, '%d-%m-%Y')
+# Все данные добавляются в список в виде словаря
        notes.append(note)
        continue
-
+# При отрицательном ответе в список нечего не добавляется
     elif question == 'нет':
         break
     else:
         print(Fore.RED + 'Неверный ввод. Попробуйте ещё раз.')
         continue
 deinit()
+# В конце выводится функция, которая показывает созданные или нет заметки
 display_notes(notes)
 
