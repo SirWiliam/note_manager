@@ -1,8 +1,10 @@
 from datetime import datetime
 from colorama import init, deinit
+
 # Используем библиотеку colorama для визуального оформления
 init(autoreset=True)
 from colorama import Fore, Back, Style
+
 # Создаём функцию, которая будет выводить список созданных заметок
 def display_notes(notes):
     print(Fore.YELLOW + 'Список ваших заметок:')
@@ -14,11 +16,14 @@ def display_notes(notes):
         print(Fore.CYAN, Style.BRIGHT + f'Заметка №{a + 1}:')
         a += 1
         print(*item.items(), sep='\n')
+
 # Создаём список в который будем добавлять готовые заметки
 notes = []
+
 # Создание заметок начинаем с вопроса
 while True:
     question = input(Style.BRIGHT + 'Хотите создать заметку? (да\нет): ').lower()
+
 # Если вопрос положительный, начинается сбор информации для заметки
     if question == 'да':
        note = {}
@@ -46,9 +51,11 @@ while True:
            else:
                break
        note['content'] = content
+
 # Статус для новых заметок присваивается автоматически
        status = 'Новая'
        note['status'] = status
+
 # Время создания присваивается автоматически
        created_date = datetime.today().date()
        note['created_date'] = datetime.strftime(created_date, '%d-%m-%Y')
@@ -56,15 +63,11 @@ while True:
            issue_date = input(Style.BRIGHT + 'Пожалуйста, введите дату дедлайна\n'
                               ' в формате "дд-мм-гггг"(через дефис и без пробелов): ')
            try:
-               # Переводим полученное значение в формат datetime для сравнения
                issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
-               # Подтверждение правильного ввода
                print(Style.BRIGHT + 'Вы ввели: ', issue_date.strftime('%d-%m-%Y'))
-           # Проверяем правильность ввода
            except ValueError:
                print(Fore.RED + 'Неверный ввод! Попробуйте ещё.')
                continue
-           # Сравниваем даты и предупреждаем о разнице
            if issue_date == created_date:
                print(Fore.RED + 'Внимание! Дедлайн истекает сегодня.')
                break
@@ -77,7 +80,6 @@ while True:
                print(Fore.RED + 'Внимание! До дедлайна: ', difference_1.days, 'дней!')
                break
        note['issue_date'] = datetime.strftime(issue_date, '%d-%m-%Y')
-# Все данные добавляются в список в виде словаря
        notes.append(note)
        continue
 # При отрицательном ответе в список нечего не добавляется
