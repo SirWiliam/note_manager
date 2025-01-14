@@ -3,7 +3,7 @@ from colorama import init, deinit
 
 # Используем библиотеку colorama для визуального оформления
 init(autoreset=True)
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 # Создаём функцию, которая будет выводить список созданных заметок
 def display_notes(notes):
