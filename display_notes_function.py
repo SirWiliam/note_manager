@@ -16,7 +16,7 @@ def display_notes(notes):
         print(Fore.CYAN, Style.BRIGHT + f'Заметка №{a + 1}:')
         a += 1
         print(*item.items(), sep='\n')
-
+    return notes
 # Создаём список в который будем добавлять готовые заметки
 notes = []
 
