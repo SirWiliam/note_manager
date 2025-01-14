@@ -102,7 +102,7 @@ while True:
     if question == '3':
         keyword = input('Введите имя, название или описание заметки для поиска: ')
         status = input('Введите статус заметки для поиска (новая, в процессе, выполнена): ')
-        keyword, status = search_notes(notes, keyword, status)
+        notes = search_notes(notes, keyword, status)
         break
 
 
