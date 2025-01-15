@@ -78,9 +78,9 @@ def search_notes(notes, keyword=None, status=None):
     else:
         print('Ваш запрос не дал результата.')
 
-    return notes_list
+    return notes
 
-
+# Цикл для тестирования функции
 while True:
     print('Какой тип пойска заметки хотите осуществить?')
     question = input('1 - по ключевому слову\n'
