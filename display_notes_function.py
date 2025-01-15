@@ -12,8 +12,8 @@ def display_notes(notes):
         print(Fore.RED + 'К сожалению у вас нет созданных заметок')
     a = 0
     for item in notes:
-        print(Fore.CYAN, Style.BRIGHT + '--------------------------')
-        print(Fore.CYAN, Style.BRIGHT + f'Заметка №{a + 1}:')
+        print('--------------------------')
+        print(Style.BRIGHT + f'Заметка №{a + 1}:')
         a += 1
         print(*item.items(), sep='\n')
     return notes
