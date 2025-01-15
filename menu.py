@@ -5,58 +5,122 @@ init(autoreset=True)
 notes = []
 # Создаём функцию "Меню действий"
 def menu():
-    print(Fore.YELLOW +
-        '    Меню действий:\n'
-        '1. Создать новую заметку\n'
-        '2. Показать все заметки\n'
-        '3. Обновить заметку\n'
-        '4. Удалить заметку\n'
-        '5. Найти заметки\n'
-        '6. Выйти из программы'
-    )
-    print('--------------------------------')
+    global notes, note
     while True:
+        print(Fore.YELLOW +
+              '    Меню действий:\n'
+              '1. Создать новую заметку\n'
+              '2. Показать все заметки\n'
+              '3. Обновить заметку\n'
+              '4. Удалить заметку\n'
+              '5. Поиск заметки\n'
+              '6. Выйти из программы'
+              )
+        print('--------------------------------')
         program_menu = input(Style.BRIGHT + 'Введите цифру действия которое хотите совершить: ')
         if program_menu == '1':
             print(Fore.YELLOW + 'Ваш выбор: 1. Создать новую заметку.')
             print('--------------------------------')
             create_note()
-            break
+
         elif program_menu == '2':
             print(Fore.YELLOW + 'Ваш выбор: 2. Показать все заметки.')
             print('--------------------------------')
-            display_notes(notes)
-            break
+            if len(notes) > 0:
+                display_notes(notes)
+
         elif program_menu == '3':
             print(Fore.YELLOW + 'Ваш выбор: 3. Обновить заметку.')
             print('--------------------------------')
-            update_note(notes)
-            break
+            if len(notes) > 0:
+                i = 0
+                for note in notes:
+                    print(f'Заметка №{i + 1}')
+                    i += 1
+                    print(*note.items(), sep='\n')
+                    print('--------------------------------')
+            else:
+                print('Ваш список заметок пуст.')
+            while True:
+                if note in notes:
+                    selected_note = int(input('Введите номер заметки для изменения: ')) - 1
+                    if selected_note == notes.index(note):
+                        print('Ваш выбор заметки:')
+                        print(*note.items(), sep='\n')
+                        print('--------------------------------')
+                        note = update_note(note)
+                        update_note(note)
+                    else:
+                        print('Заметки под таким номером нет.')
+
         elif program_menu == '4':
             print(Fore.YELLOW + 'Ваш выбор: 4. Удалить заметку.')
             print(Fore.RED + 'Извините, данная функция пока не реализована.')
             print('--------------------------------')
-            return menu()
+
         elif program_menu == '5':
-            print('Ваш выбор: 5. Найти заметки.')
+            print(Fore.YELLOW + 'Ваш выбор: 5. Поиск заметки.')
             print('--------------------------------')
-            search_notes(notes, keyword=None, status=None)
-            break
+            while True:
+                print('Какой тип пойска заметки хотите осуществить?')
+                question = input('1 - по ключевому слову\n'
+                                 '2 - по статусу\n'
+                                 '3 - по ключевому слову и статусу\n'
+                                 'Введите цифру вашего выбора: ')
+                print('--------------------------------')
+                if question == '1':
+                    print(Style.BRIGHT + 'Ваш выбор: Поиск по ключевому слову.')
+                    keyword = input('Введите имя, название или описание заметки для поиска: ')
+                    keyword = search_notes(notes, keyword)
+                    break
+                if question == '2':
+                    print(Style.BRIGHT + 'Ваш выбор: Поиск по статусу заметки.')
+                    status = input('Введите статус заметки для поиска (новая, в процессе, выполнено): ')
+                    status = search_notes(notes, status)
+                    break
+                if question == '3':
+                    print(Style.BRIGHT + 'Ваш выбор: Поиск по имени пользователя и статусу.')
+                    keyword = input('Введите имя, название или описание заметки для поиска: ')
+                    status = input('Введите статус заметки для поиска (новая, в процессе, выполнена): ')
+                    notes = search_notes(notes, keyword, status)
+                    break
+                else:
+                    print(Fore.RED + 'Неверный ввод. Попробуйте ещё раз.')
+
         elif program_menu == '6':
-            print('Завершение работы программы. Спасибо за использование!')
+            print('Завершение работы программы. Спасибо за использование нашей программы!')
             quit()
         else:
             print('Неверный ввод. Пожалуйста попробуйте ещё раз.')
             continue
 
-# Создаём функцию создания заметки
+# Функция: 1. Создать новую заметку
 def create_note():
     print(Style.BRIGHT + 'Давайте создадим новую заметку!')
 # Просим пользователя ввести данные для заметки
-    username = input('Введите ваше имя: ')
-    title = input('Введите заголовок заметки: ')
-    content = input('Введите описание заметки: ')
-    status = input('Введите статус заметки (например, "новая", "в процессе", "выполнена"): ')
+    while True:
+        username = input('Введите ваше имя: ')
+        if username == '':
+            print(Fore.RED + 'Неверный ввод! Попробуйте ещё раз пожалуйста.')
+            continue
+        else:
+            break
+    while True:
+        title = input('Введите заголовок заметки: ')
+        if title == '':
+            print(Fore.RED + 'Неверный ввод! Попробуйте ещё раз пожалуйста.')
+            continue
+        else:
+            break
+    while True:
+        content = input('Введите описание заметки: ')
+        if content == '':
+            print(Fore.RED + 'Неверный ввод! Попробуйте ещё раз пожалуйста.')
+            continue
+        else:
+            break
+# Статус для новых заметок присваивается по умолчанию
+    status = 'Новая'
 # Текущая дата вводится автоматически
     created_date = datetime.now().date().strftime('%d-%m-%Y')
 # С помощью цикла вводим и проверяем правильность даты дедлайна
@@ -67,7 +131,7 @@ def create_note():
             issue_date = datetime.strptime(issue_date, '%d-%m-%Y').date()
             break
         except ValueError:
-            print('Неверный ввод! Попробуйте ещё.')
+            print(Fore.RED + 'Неверный ввод! Попробуйте ещё.')
             continue
 # Записываем все полученные данные в словарь
     note = {
@@ -83,11 +147,13 @@ def create_note():
     print(Style.BRIGHT + "Заметка создана: ")
     print(*note.items(), sep='\n')
     print('--------------------------------')
+# Возвращаем список заметок и пользователь возвращается в меню программы
     return notes and menu()
 
 
-
+# Функция: 2. Показать все заметки
 def display_notes(notes):
+    # Функция проверяет список заметок на их наличие и выводит результат
     print(Style.BRIGHT + 'Список ваших заметок:')
     if len(notes) == 0:
         print(Fore.RED + 'К сожалению у вас нет созданных заметок')
@@ -96,13 +162,15 @@ def display_notes(notes):
     a = 0
     for item in notes:
         print('--------------------------------')
-        print(Fore.CYAN, Style.BRIGHT + f'Заметка №{a + 1}:')
+        print(Style.BRIGHT + f'Заметка №{a + 1}:')
         a += 1
         print(*item.items(), sep='\n')
+        print('--------------------------------')
+# Возвращаем список заметок и пользователь возвращается в меню программы
     return notes and menu()
 
+# Функция: 3. Обновить заметку
 def update_note(note):
-
     # Предлагаем пользователю выбрать данные для изменения
     while True:
         print()
@@ -175,22 +243,22 @@ def update_note(note):
                     continue
             note['issue_date'] = datetime.strftime(issue_date, '%d-%m-%Y')
             break
-    # Возвращаем обновлённую заметку
-    return note and menu()
 
+# Возвращаем список с обновлённой заметкой и пользователь возвращается в меню программы
+    return notes and menu()
 
+# Функция: 5. Поиск заметки
 def search_notes(notes, keyword=None, status=None):
 # Проверка для пустого списка
-    if len(notes) == 0:
+    if len(notes) < 0:
          print('Список заметок пуст.')
-         return []
+         return notes and menu()
 
-# Если не задано ключевое слово или статус вернуть исходный список заметок
+# Если не задано ключевое слово или статус возвращаем исходный список заметок и пользователь возвращается в меню
     if keyword is None and status is None:
-         return notes
+         return notes and menu()
 
     notes_list = []
-
     for note in notes:
         my_keyword = True
         my_status = True
@@ -205,7 +273,6 @@ def search_notes(notes, keyword=None, status=None):
                     keyword in note['content'].lower() or
                     keyword in note['username'].lower()
             )
-
 # Поиск по статусу
         if status is not None:
             my_status = note['status'].lower() == status.lower()
@@ -214,23 +281,15 @@ def search_notes(notes, keyword=None, status=None):
         if my_keyword and my_status:
             notes_list.append(note)
 
-# Отобразить результат
+# Отображаем результат поиска
     if len(notes_list) > 0:
         print('Результат поиска:')
         for i, note in enumerate(notes_list, 1):
             print(f'Заметка №{i}:')
-            print(f'Имя пользователя: {note['username']}')
-            print(f'Заголовок: {note['title']}')
-            print(f'Описание: {note['content']}')
-            print(f'Статус: {note['status']}')
-            print(f'Дата создания: {note['created_date']}')
-            print(f'Дата дедлайна: {note['issue_date']}')
-            if i < len(notes_list):
-                print('')
+            print(*note.items(), sep='\n')
     else:
         print('Ваш запрос не дал результата.')
-    return notes_list
 
-
+    return notes and menu()
 menu()
 deinit()
