@@ -31,7 +31,7 @@ notes = [
 
 def search_notes(notes, keyword=None, status=None):
 # Проверка для пустого списка
-    if len(notes) == 0:
+    if len(notes) < 0:
          print('Список заметок пуст.')
          return []
 
@@ -75,8 +75,6 @@ def search_notes(notes, keyword=None, status=None):
             print(f'Статус: {note['status']}')
             print(f'Дата создания: {note['created_date']}')
             print(f'Дата дедлайна: {note['issue_date']}')
-            if i < len(notes_list):
-                print('')
     else:
         print('Ваш запрос не дал результата.')
 
