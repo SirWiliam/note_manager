@@ -31,7 +31,7 @@ def menu():
         elif menu_choice == '3':
             print(Fore.YELLOW + 'Ваш выбор: 3. Обновить заметку.')
             print('--------------------------------')
-            handle_update_notes_choice()
+            handle_update_notes_choice(notes)
 
         elif menu_choice == '4':
             print(Fore.YELLOW + 'Ваш выбор: 4. Удалить заметку.')
@@ -40,31 +40,7 @@ def menu():
         elif menu_choice == '5':
             print(Fore.YELLOW + 'Ваш выбор: 5. Поиск заметки.')
             print('--------------------------------')
-            while True:
-                print('Какой тип пойска заметки хотите осуществить?')
-                question = input('1 - по ключевому слову\n'
-                                 '2 - по статусу\n'
-                                 '3 - по ключевому слову и статусу\n'
-                                 'Введите цифру вашего выбора: ')
-                print('--------------------------------')
-                if question == '1':
-                    print(Style.BRIGHT + 'Ваш выбор: Поиск по ключевому слову.')
-                    keyword = input('Введите имя, название или описание заметки для поиска: ')
-                    keyword = search_notes(notes, keyword)
-                    break
-                if question == '2':
-                    print(Style.BRIGHT + 'Ваш выбор: Поиск по статусу заметки.')
-                    status = input('Введите статус заметки для поиска (новая, в процессе, выполнено): ')
-                    status = search_notes(notes, status)
-                    break
-                if question == '3':
-                    print(Style.BRIGHT + 'Ваш выбор: Поиск по имени пользователя и статусу.')
-                    keyword = input('Введите имя, название или описание заметки для поиска: ')
-                    status = input('Введите статус заметки для поиска (новая, в процессе, выполнена): ')
-                    notes = search_notes(notes, keyword, status)
-                    break
-                else:
-                    print(Fore.RED + 'Неверный ввод. Попробуйте ещё раз.')
+            choice_search_notes(notes)
 
         elif menu_choice == '6':
             print('Завершение работы программы. Спасибо за использование нашей программы!')
@@ -128,7 +104,6 @@ def create_note():
     print('--------------------------------')
 # Возвращаем список заметок и пользователь возвращается в меню программы
     return notes and menu()
-
 
 # Функция: 2. Показать все заметки
 def display_notes(notes):
@@ -226,8 +201,8 @@ def update_note(note):
 # Возвращаем список с обновлённой заметкой и пользователь возвращается в меню программы
     return notes and menu()
 
-# Функция для обработки выбора заметки
-def handle_update_notes_choice():
+# Функция для обработки выбора заметки для изменения
+def handle_update_notes_choice(notes):
     if len(notes) > 0:
         i = 0
         for note in notes:
@@ -255,6 +230,33 @@ def delete_note(notes):
     print('--------------------------------')
     return notes and menu()
 
+# Функция выбора метода поиска
+def choice_search_notes(notes):
+    while True:
+        print('Какой тип пойска заметки хотите осуществить?')
+        question = input('1 - по ключевому слову\n'
+                         '2 - по статусу\n'
+                         '3 - по ключевому слову и статусу\n'
+                         'Введите цифру вашего выбора: ')
+        print('--------------------------------')
+        if question == '1':
+            print(Style.BRIGHT + 'Ваш выбор: Поиск по ключевому слову.')
+            keyword = input('Введите имя, название или описание заметки для поиска: ')
+            keyword = search_notes(notes, keyword)
+            break
+        if question == '2':
+            print(Style.BRIGHT + 'Ваш выбор: Поиск по статусу заметки.')
+            status = input('Введите статус заметки для поиска (новая, в процессе, выполнено): ')
+            status = search_notes(notes, status)
+            break
+        if question == '3':
+            print(Style.BRIGHT + 'Ваш выбор: Поиск по имени пользователя и статусу.')
+            keyword = input('Введите имя, название или описание заметки для поиска: ')
+            status = input('Введите статус заметки для поиска (новая, в процессе, выполнена): ')
+            notes = search_notes(notes, keyword, status)
+            break
+        else:
+            print(Fore.RED + 'Неверный ввод. Попробуйте ещё раз.')
 
 # Функция: 5. Поиск заметки
 def search_notes(notes, keyword=None, status=None):
@@ -297,7 +299,7 @@ def search_notes(notes, keyword=None, status=None):
             print(f'Заметка №{i}:')
             print(*note.items(), sep='\n')
     else:
-        print('Ваш запрос не дал результата.')
+        print('Поиск не дал результата.')
 
     return notes and menu()
 menu()
