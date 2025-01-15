@@ -55,8 +55,7 @@ def menu():
 
         elif program_menu == '4':
             print(Fore.YELLOW + 'Ваш выбор: 4. Удалить заметку.')
-            print(Fore.RED + 'Извините, данная функция пока не реализована.')
-            print('--------------------------------')
+            delete_note(notes)
 
         elif program_menu == '5':
             print(Fore.YELLOW + 'Ваш выбор: 5. Поиск заметки.')
@@ -246,6 +245,12 @@ def update_note(note):
 
 # Возвращаем список с обновлённой заметкой и пользователь возвращается в меню программы
     return notes and menu()
+# Функция: 4. Удалить заметку
+def delete_note(notes):
+    print(Fore.RED + 'Извините, данная функция пока не реализована.')
+    print('--------------------------------')
+    return notes and menu()
+
 
 # Функция: 5. Поиск заметки
 def search_notes(notes, keyword=None, status=None):
