@@ -5,7 +5,6 @@ init(autoreset=True)
 notes = []
 # Создаём функцию "Меню действий"
 def menu():
-    global notes, note
     while True:
         print(Fore.YELLOW +
               '    Меню действий:\n'
@@ -17,47 +16,28 @@ def menu():
               '6. Выйти из программы'
               )
         print('--------------------------------')
-        program_menu = input(Style.BRIGHT + 'Введите цифру действия которое хотите совершить: ')
-        if program_menu == '1':
+        menu_choice = input(Style.BRIGHT + 'Введите цифру действия которое хотите совершить: ')
+        if menu_choice == '1':
             print(Fore.YELLOW + 'Ваш выбор: 1. Создать новую заметку.')
             print('--------------------------------')
             create_note()
 
-        elif program_menu == '2':
+        elif menu_choice == '2':
             print(Fore.YELLOW + 'Ваш выбор: 2. Показать все заметки.')
             print('--------------------------------')
             if len(notes) > 0:
                 display_notes(notes)
 
-        elif program_menu == '3':
+        elif menu_choice == '3':
             print(Fore.YELLOW + 'Ваш выбор: 3. Обновить заметку.')
             print('--------------------------------')
-            if len(notes) > 0:
-                i = 0
-                for note in notes:
-                    print(f'Заметка №{i + 1}')
-                    i += 1
-                    print(*note.items(), sep='\n')
-                    print('--------------------------------')
-            else:
-                print('Ваш список заметок пуст.')
-            while True:
-                if note in notes:
-                    selected_note = int(input('Введите номер заметки для изменения: ')) - 1
-                    if selected_note == notes.index(note):
-                        print('Ваш выбор заметки:')
-                        print(*note.items(), sep='\n')
-                        print('--------------------------------')
-                        note = update_note(note)
-                        update_note(note)
-                    else:
-                        print('Заметки под таким номером нет.')
+            handle_update_notes_choice()
 
-        elif program_menu == '4':
+        elif menu_choice == '4':
             print(Fore.YELLOW + 'Ваш выбор: 4. Удалить заметку.')
             delete_note(notes)
 
-        elif program_menu == '5':
+        elif menu_choice == '5':
             print(Fore.YELLOW + 'Ваш выбор: 5. Поиск заметки.')
             print('--------------------------------')
             while True:
@@ -86,7 +66,7 @@ def menu():
                 else:
                     print(Fore.RED + 'Неверный ввод. Попробуйте ещё раз.')
 
-        elif program_menu == '6':
+        elif menu_choice == '6':
             print('Завершение работы программы. Спасибо за использование нашей программы!')
             quit()
         else:
@@ -245,6 +225,30 @@ def update_note(note):
 
 # Возвращаем список с обновлённой заметкой и пользователь возвращается в меню программы
     return notes and menu()
+
+# Функция для обработки выбора заметки
+def handle_update_notes_choice():
+    if len(notes) > 0:
+        i = 0
+        for note in notes:
+            print(f'Заметка №{i + 1}')
+            i += 1
+            print(*note.items(), sep='\n')
+            print('--------------------------------')
+    else:
+        print('Ваш список заметок пуст.')
+    while True:
+        if note in notes:
+            selected_note = int(input('Введите номер заметки для изменения: ')) - 1
+            if selected_note == notes.index(note):
+                print('Ваш выбор заметки:')
+                print(*note.items(), sep='\n')
+                print('--------------------------------')
+                note = update_note(note)
+                update_note(note)
+            else:
+                print('Заметки под таким номером нет.')
+
 # Функция: 4. Удалить заметку
 def delete_note(notes):
     print(Fore.RED + 'Извините, данная функция пока не реализована.')
