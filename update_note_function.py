@@ -6,9 +6,14 @@ from datetime import datetime
 
 # Создаём принимающую функцию
 def update_note(note):
+    while True:
+    # Выводим заметку в удобном формате
+        print('Ваша заметка:')
+        for key, value in note.items():
+            print('{0}: {1}'.format(key, value))
 
     # Предлагаем пользователю выбрать данные для изменения
-    while True:
+
         print()
         change = input('Какие данные хотите обновить?\n'
             '("username, title, content, status, issue_date"): ')
@@ -60,7 +65,7 @@ def update_note(note):
         elif change == 'status':
             while True:
                 # Можно ввести любой статус, но поле не может быть пустым
-                status = input('Введите  новый статус заметки (например, "новая", "в процессе", "выполнена"): ')
+                status = input('Введите  новый статус заметки ("новая", "в процессе", "выполнена"): ')
                 if status == '':
                     print('Неверный ввод! Попробуйте ещё раз пожалуйста.')
                     continue
@@ -80,6 +85,7 @@ def update_note(note):
                     continue
             note['issue_date'] = datetime.strftime(issue_date, '%d-%m-%Y')
             break
+
     # Возвращаем обновлённую заметку
     return note
 
@@ -92,12 +98,10 @@ note = {
         'created_date': '28-11-2024',
         'issue_date': '3-02-2025'
 }
-# Выводим заметку в удобном формате
-print('Ваша заметка:')
-for key, value in note.items():
-    print('{0}: {1}'.format(key, value))
+
+
 # Вызываем функцию для изменения содержания заметки
-update_note(note)
+note = update_note(note)
 
 
 # Выводим результат работы функции
