@@ -223,7 +223,7 @@ def handle_update_notes_choice(notes):
                 update_note(note)
             else:
                 print('Заметки под таким номером нет.')
-
+        break
 # Функция: 4. Удалить заметку
 def delete_note(notes):
     print(Fore.RED + 'Извините, данная функция пока не реализована.')
