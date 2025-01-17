@@ -1,6 +1,5 @@
-import json
-# Создаём файл если его нет и закрываем.
-filename = open('filename.json', 'a+', encoding='utf-8')
+# Создаём файл в который будем записывать заметки
+filename = open('filename.txt', 'w', encoding='utf-8')
 filename.close()
 
 # Список заметок который надо записать
@@ -34,16 +33,16 @@ notes = [
 # Функция которая принимает список заметок и записывает их в файл
 def save_notes_to_file(notes, filename):
 
-    # Открываем созданный файл в формате json с функцией записи
-    filename = open('filename.json', 'w', encoding='utf-8')
-
-    # С помощью метода .dump записываем список в файл
-    with open('filename.json', 'w', encoding='utf-8') as filename:
-        json.dump(notes, filename, ensure_ascii=False, indent=4)
+    # Открываем созданный файл в формате записи
+    filename = open('filename.txt', 'w', encoding='utf-8')
+    for item in notes:
+        for key, value in item.items():
+            filename.writelines(f'{key}: {value}\n')
+        filename.write('---\n')
 
     # Закрываем файл после записи и возвращаем из функции
-        filename.close()
-        return filename
+    filename.close()
+    return filename
 
 # Передаём список в функцию и вызываем её
 notes = save_notes_to_file(notes, filename)
