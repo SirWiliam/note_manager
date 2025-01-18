@@ -38,7 +38,7 @@ def save_notes_to_file(notes, filename):
     for item in notes:
         for key, value in item.items():
             filename.writelines(f'{key}: {value}\n')
-        filename.write('---\n')
+        filename.write('— — —\n')
 
     # Закрываем файл после записи и возвращаем из функции
     filename.close()
