@@ -1,0 +1,21 @@
+username: Алекс
+title: Список покупок
+content: Закупить продукты
+status: новая
+created_date: 20-01-2025
+issue_date: 30-01-2025
+— — —
+username: Дима
+title: Спортзал
+content: Сходить в спортзал
+status: в процессе
+created_date: 20-01-2025
+issue_date: 01-02-2025
+— — —
+username: Даша
+title: День рождения
+content: Купить подарок
+status: выполнено
+created_date: 20-03-2025
+issue_date: 26-05-2025
+— — —
