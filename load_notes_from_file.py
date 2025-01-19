@@ -1,7 +1,6 @@
 
 
-file = open('filename.txt', encoding='utf-8')
-file.close()
+
 notes = []
 # Создаём функцию для чтения файла и переноса содержимого в список словарей
 def load_notes_from_file(filename):
@@ -9,6 +8,9 @@ def load_notes_from_file(filename):
     # Открываем нужный файл с помощью функции with
     with open('filename.txt', 'r', encoding='utf-8') as file:
         all_string = file.readlines()
+        if len(all_string) == 0:
+            print('Открытый файл пуст')
+
         symbols = ('— — —\n')
 
         # Убираем ненужные символы за один проход
@@ -22,11 +24,19 @@ def load_notes_from_file(filename):
             note[key] = value
             notes.append(note)
 
+        # Проверяем результат
+        print(notes)
+
         # Возвращаем из функции список словарей
         return notes
 
-# Вызываем функцию
-load_notes_from_file(file)
+# Проверяем есть ли нужный нам файл
+try:
+    file = open('filename.txt', encoding='utf-8')
+    file.close()
+    # Вызываем функцию
+    load_notes_from_file(file)
+except FileNotFoundError:
+    print('Файл с таким именем не обнаружен.')
 
-# Проверяем результат
-print(notes)
+
