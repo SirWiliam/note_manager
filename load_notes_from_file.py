@@ -10,6 +10,7 @@ def load_notes_from_file(filename):
         all_string = file.readlines()
         if len(all_string) == 0:
             print('Открытый файл пуст')
+            return notes
 
         symbols = ('— — —\n')
 
