@@ -29,7 +29,6 @@ notes = [
         'issue_date': '26-05-2025'
 }
 ]
-
 # Функция которая принимает список заметок и записывает их в файл
 def save_notes_to_file(notes, filename):
 
