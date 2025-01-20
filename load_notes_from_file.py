@@ -37,7 +37,7 @@ try:
 # Если файл отсутствует, выводится сообщение о создании нового
 except FileNotFoundError:
     print('Файл с таким именем не обнаружен. Создан новый файл')
-    filename = open('filename.txt', 'a+', encoding='utf-8')
+    filename = open('filename.txt', 'x', encoding='utf-8')
     filename.close()
     # Вызываем функцию для дальнейшей работы с файлом
     filename = load_notes_from_file(filename)
