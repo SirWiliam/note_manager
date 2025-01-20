@@ -1,6 +1,4 @@
-# Создаём файл в который будем записывать заметки
-filename = open('filename.txt', 'w', encoding='utf-8')
-filename.close()
+
 
 # Список заметок который надо записать
 notes = [
@@ -29,7 +27,7 @@ notes = [
         'issue_date': '26-05-2025'
 }
 ]
-# Функция которая принимает список заметок и записывает их в файл
+# Функция принимает список заметок и записывает их в файл
 def save_notes_to_file(notes, filename):
 
     # Открываем созданный файл в формате записи
@@ -43,5 +41,21 @@ def save_notes_to_file(notes, filename):
     filename.close()
     return filename
 
-# Передаём список в функцию и вызываем её
-notes = save_notes_to_file(notes, filename)
+# Проверяем есть ли нужный нам файл
+try:
+    with open('filename.txt', 'w', encoding='utf-8') as filename:
+        filename.close()
+        # Передаём список в функцию и вызываем её
+        notes = save_notes_to_file(notes, filename)
+# Если файл отсутствует, выводится сообщение о создании нового
+except FileNotFoundError:
+    print('Файл с таким именем не обнаружен. Создан новый файл')
+    filename = open('filename.txt', 'a+', encoding='utf-8')
+    filename.close()
+    # Передаём список в функцию и вызываем её
+    notes = save_notes_to_file(notes, filename)
+except UnicodeDecodeError:
+    print('Ошибка при чтении файла filename. Проверьте его содержимое.')
+except PermissionError:
+    print('Ошибка доступа')
+
