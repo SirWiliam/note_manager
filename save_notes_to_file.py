@@ -50,7 +50,7 @@ try:
 # Если файл отсутствует, выводится сообщение о создании нового
 except FileNotFoundError:
     print('Файл с таким именем не обнаружен. Создан новый файл')
-    filename = open('filename.txt', 'a+', encoding='utf-8')
+    filename = open('filename.txt', 'x', encoding='utf-8')
     filename.close()
     # Передаём список в функцию и вызываем её
     notes = save_notes_to_file(notes, filename)
