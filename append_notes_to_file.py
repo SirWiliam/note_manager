@@ -18,14 +18,14 @@ def append_notes_to_file(notes, filename):
 
 if __name__ == '__main__':
     notes = [
-    {
-        'username': 'Юля',
-        'title': 'Причёска',
-        'content': 'Сходить в парикмахерскую',
-        'status': 'новая',
-        'created_date': '20-01-2025',
-        'issue_date': '30-01-2025'
-    },
+        {
+            'username': 'Юля',
+            'title': 'Причёска',
+            'content': 'Сходить в парикмахерскую',
+            'status': 'новая',
+            'created_date': '20-01-2025',
+            'issue_date': '30-01-2025'
+        },
     ]
 
     notes = append_notes_to_file(notes, filename='filename.txt')
