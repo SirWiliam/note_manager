@@ -1,7 +1,7 @@
 
 def append_notes_to_file(notes, filename):
     try:
-        with open('filename.txt', 'a', encoding='utf-8') as filename:
+        with open(filename, 'a', encoding='utf-8') as filename:
             for note in notes:
                 filename.write(f'Имя пользователя: {note['username']}\n')
                 filename.write(f'Заголовок: {note['title']}\n')
