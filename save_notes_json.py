@@ -1,8 +1,12 @@
 import json
+# Создаём функцию для записи в формате .json
 def save_notes_json(notes, filename):
     try:
+        # Открываем\создаём файл для записи
         with open(filename, 'w', encoding='utf-8') as file:
+            # Записываем с помощью метода json.dump
             json.dump(notes, file, indent=4, ensure_ascii=False)
+    # Проверяем на ошибки
     except PermissionError:
         print('Ошибка: Недостаточно прав для записи в файл')
     except Exception as e:
