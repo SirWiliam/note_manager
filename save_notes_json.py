@@ -40,5 +40,4 @@ if __name__ == '__main__':
             'issue_date': '26-05-2025'
         }
     ]
-
     save_notes_json(notes, filename='filename.json')
