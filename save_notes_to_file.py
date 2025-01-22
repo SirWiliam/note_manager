@@ -3,7 +3,7 @@
 # Функция принимает список заметок и записывает их в файл
 def save_notes_to_file(notes, filename):
     try:
-        with open('filename.txt', 'w', encoding='utf-8') as filename:
+        with open(filename, 'w', encoding='utf-8') as filename:
             for note in notes:
                 filename.write(f'Имя пользователя: {note['username']}\n')
                 filename.write(f'Заголовок: {note['title']}\n')
