@@ -31,5 +31,4 @@ if __name__ == '__main__':
             'issue_date': '30-01-2025'
         },
     ]
-
     notes = append_notes_to_file(notes, filename='filename.txt')
