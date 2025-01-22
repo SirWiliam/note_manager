@@ -12,7 +12,7 @@ def load_notes_from_file(filename):
         'Дедлайн': 'issue_date'
     }
     try:   # Открываем нужный файл с помощью конструкции with
-        with open('filename.txt', 'r', encoding='utf-8') as file:
+        with open(filename, 'r', encoding='utf-8') as file:
             all_string = file.read()
             if all_string:
                 note_string = all_string.split('\n— — —\n')
