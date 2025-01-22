@@ -3,7 +3,7 @@
 def load_notes_from_file(filename):
     notes = []
 
-    original_keys = {
+    england_keys = {
         'Имя пользователя': 'username',
         'Заголовок': 'title',
         'Описание': 'content',
@@ -22,7 +22,7 @@ def load_notes_from_file(filename):
             # Назначаем ключ и значение с помощью разделения ":", записываем в словарь и добавляем в список
                     for line in note_lines:
                         russian_key, value = line.split(': ', 1)
-                        key = original_keys[russian_key]
+                        key = england_keys[russian_key]
                         value = value.strip()
                         note[key] = value
                     notes.append(note)
