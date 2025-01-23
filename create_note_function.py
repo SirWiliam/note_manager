@@ -31,9 +31,9 @@ def create_note():
     }
 
     return note
-
-# Вызываем созданную функцию
-note = create_note()
-# Выводим результат работы функции на экран
-print("Заметка создана: ")
-print(*note.items(), sep='\n')
+if __name__ == '__main__':
+    # Вызываем созданную функцию
+    note = create_note()
+    # Выводим результат работы функции на экран
+    print("Заметка создана: ")
+    print(*note.items(), sep='\n')
