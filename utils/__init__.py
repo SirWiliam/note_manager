@@ -1,2 +1,3 @@
-from note_manager.utils import id_generator
-from note_manager.utils import valid_date, valid_status
+from id_generator import unique_id
+from valid_date import valid_date
+from valid_status import valid_status
